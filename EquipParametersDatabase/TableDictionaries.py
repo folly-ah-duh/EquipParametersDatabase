@@ -11,7 +11,8 @@ class TableDictionaries():
             Stock_Id TEXT,
             Muzzle_Id TEXT,
             Muzzle_Option_Id TEXT,
-            Sight_Id TEXT,
+            Sight_Id1 TEXT,
+            Sight_Id2 TEXT,
             Underbarrel_Id TEXT,
             Option_Id1 TEXT,
             Option_Id2 TEXT,
@@ -21,7 +22,8 @@ class TableDictionaries():
             FOREIGN KEY(Magazine_Id) REFERENCES magazine(Magazine_Id),
             FOREIGN KEY(Stock_Id) REFERENCES stock(Stock_Id),
             FOREIGN KEY(Muzzle_Option_Id) REFERENCES muzzleOption(Muzzle_Option_Id),
-            FOREIGN KEY(Sight_Id) REFERENCES sight(Sight_Id),
+            FOREIGN KEY(Sight_Id1) REFERENCES sight(Sight_Id),
+            FOREIGN KEY(Sight_Id2) REFERENCES sight(Sight_Id),
             FOREIGN KEY(Underbarrel_Id) REFERENCES underBarrel(Underbarrel_Id),
             FOREIGN KEY(Option_Id1) REFERENCES option(Option_Id),
             FOREIGN KEY(Option_Id2) REFERENCES option(Option_Id)
@@ -33,7 +35,7 @@ class TableDictionaries():
         "Name" : "receiverParamSetsBase",
         "Version" : -1,
         "CREATE" : """CREATE TABLE receiverParamSetsBase (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             Param1 INTEGER,
             Param2 INTEGER,
             Param3 REAL,
@@ -50,7 +52,7 @@ class TableDictionaries():
         "Name" : "receiverParamSetsWobbling",
         "Version" : -1,
         "CREATE" : """CREATE TABLE receiverParamSetsWobbling (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             Param1 REAL,
             Param2 REAL,
             Param3 REAL,
@@ -66,7 +68,7 @@ class TableDictionaries():
         "Name" : "receiverParamSetsSystem",
         "Version" : -1,
         "CREATE" : """CREATE TABLE receiverParamSetsSystem (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             Equip_Type REAL,
             Reticle_UI REAL,
             Trigger REAL,
@@ -87,7 +89,7 @@ class TableDictionaries():
         "Name" : "receiverParamSetsSound",
         "Version" : -1,
         "CREATE" : """CREATE TABLE receiverParamSetsSound (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             Sound_Effect TEXT
             )
         """
@@ -115,7 +117,7 @@ class TableDictionaries():
         "Name" : "barrelParamSetsBase",
         "Version" : -1,
         "CREATE" : """CREATE TABLE barrelParamSetsBase (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             Param1 REAL,
             Param2 REAL,
             Param3 REAL,
@@ -226,7 +228,7 @@ class TableDictionaries():
         "Name" : "bulletParamSetsBase",
         "Version" : -1,
         "CREATE" : """CREATE TABLE bulletParamSetsBase (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             Param1 INTEGER,
             Param2 INTEGER,
             Param3 REAL,
@@ -247,7 +249,7 @@ class TableDictionaries():
         "Name" : "bulletTrailEffectList",
         "Version" : -1,
         "CREATE" : """CREATE TABLE bulletTrailEffectList (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             Bullet_Trail_Effect TEXT
             )
         """
