@@ -26,6 +26,9 @@
     <Compile Include="EquipParametersReader.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EquipParameterWriter.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TableBuilder.py">
       <SubType>Code</SubType>
     </Compile>

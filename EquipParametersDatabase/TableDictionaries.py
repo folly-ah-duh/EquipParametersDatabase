@@ -280,4 +280,22 @@ class TableDictionaries():
         """
         }
 
-    dictionary_list = [barrel_dict, barrelParamSetsBase_dict, bullet_dict, bulletParamSetsBase_dict, bulletTrailEffectList_dict, gunBasic_dict, magazine_dict, muzzleOption_dict, option_dict, receiver_dict, receiverParamSetsBase_dict, receiverParamSetsSound_dict, receiverParamSetsSystem_dict, receiverParamSetsWobbling_dict, sight_dict, stock_dict, underBarrel_dict]
+    dictionary_list = [
+        gunBasic_dict, 
+        receiverParamSetsBase_dict, 
+        receiverParamSetsWobbling_dict, 
+        receiverParamSetsSystem_dict, 
+        receiverParamSetsSound_dict, 
+        receiver_dict, 
+        barrelParamSetsBase_dict, 
+        barrel_dict, 
+        magazine_dict, 
+        muzzleOption_dict, 
+        option_dict, 
+        sight_dict, 
+        stock_dict, 
+        underBarrel_dict,
+        bulletParamSetsBase_dict, 
+        bulletTrailEffectList_dict,
+        bullet_dict
+        ]

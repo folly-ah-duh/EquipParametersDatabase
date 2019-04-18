@@ -4,8 +4,8 @@ from EquipParametersReader import EquipParametersReader
 
 class TableBuilder():
     """"""
-    def __init__(self):
-        self.conn = sqlite3.connect(':memory:')
+    def __init__(self, connection):
+        self.conn = connection
         self.c = self.conn.cursor()
 
     def create_tables(self):
@@ -13,8 +13,8 @@ class TableBuilder():
             for dict in TableDictionaries.dictionary_list:
                 self.c.execute(dict["CREATE"])
 
-    def parse_lua_data(self):
-        epr = EquipParametersReader("EquipParameters.lua")
+    def parse_lua_data(self, lua_file):
+        epr = EquipParametersReader(lua_file)
 
         with self.conn:
             for dict in TableDictionaries.dictionary_list:
@@ -39,10 +39,6 @@ class TableBuilder():
                         entry_index += 1
 
                     sql_insert = (f"INSERT INTO {dict['Name']} VALUES({', '.join(data_entry)})")
-                    print(sql_insert)
+                    #print(sql_insert)
                     self.c.execute(sql_insert)
-            self.c.execute("SELECT * FROM receiver, receiverParamSetsBase WHERE receiver.receiverParamSetsBase_index = 1 AND receiverParamSetsBase.id = receiver.receiverParamSetsBase_index")
-
-            query = self.c.fetchall()
-            for line in query:
-                print(line)
+            self.conn.commit()
