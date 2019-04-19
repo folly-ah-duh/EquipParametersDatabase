@@ -1,5 +1,5 @@
 class EquipParametersReader:
-    """Reads EquipParameters to get specific tables"""
+    """Reads EquipParameters to pull table strings"""
 
 
     def __init__(self, equip_parameters_filename):

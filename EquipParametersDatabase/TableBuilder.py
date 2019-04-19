@@ -3,20 +3,22 @@ from TableDictionaries import TableDictionaries
 from EquipParametersReader import EquipParametersReader
 
 class TableBuilder():
-    """"""
+    """writes lua tables to database (lua -> sql)"""
+
+
     def __init__(self, connection):
-        self.conn = connection
-        self.c = self.conn.cursor()
+        self.__conn = connection
+        self.__c = self.__conn.cursor()
 
-    def create_tables(self):
-        with self.conn:
+    def __create_tables(self):
+        with self.__conn:
             for dict in TableDictionaries.dictionary_list:
-                self.c.execute(dict["CREATE"])
+                self.__c.execute(dict["CREATE"])
 
-    def parse_lua_data(self, lua_file):
+    def __parse_lua_data(self, lua_file):
         epr = EquipParametersReader(lua_file)
 
-        with self.conn:
+        with self.__conn:
             for dict in TableDictionaries.dictionary_list:
                 table_content = epr.get_parameter_table(dict["Name"])
                 no_version = dict["Version"] == -1
@@ -40,5 +42,10 @@ class TableBuilder():
 
                     sql_insert = (f"INSERT INTO {dict['Name']} VALUES({', '.join(data_entry)})")
                     #print(sql_insert)
-                    self.c.execute(sql_insert)
-            self.conn.commit()
+                    self.__c.execute(sql_insert)
+            self.__conn.commit()
+
+
+    def build_database(self, equip_parameters_filename):
+        self.__create_tables()
+        self.__parse_lua_data(equip_parameters_filename)
