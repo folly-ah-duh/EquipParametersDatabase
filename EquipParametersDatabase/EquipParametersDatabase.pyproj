@@ -22,6 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DbGUI.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="EquipParametersDatabase.py" />
     <Compile Include="EquipParametersReader.py">
       <SubType>Code</SubType>
@@ -33,6 +36,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TableDictionaries.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TableQuery.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
