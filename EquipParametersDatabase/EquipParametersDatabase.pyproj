@@ -32,13 +32,10 @@
     <Compile Include="EquipParameterWriter.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TableBuilder.py">
+    <Compile Include="DbManager.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TableDictionaries.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TableQuery.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -9,7 +9,7 @@ class EquipParameterWriter():
         self.__conn = connection
 
 
-    def __write_row(self, row):
+    def write_row(self, row):
         values = []
 
         for i in range(len(row)):
@@ -23,7 +23,7 @@ class EquipParameterWriter():
             else:
                 values.append(str(value))
 
-        return "{" + ",".join(values) + "}"
+        return "{" + ", ".join(values) + "}"
 
 
     def __compile_rows(self, rows, no_version):
@@ -33,7 +33,7 @@ class EquipParameterWriter():
             if no_version:
                 row = row[1:]
             
-            lua_rows.append(self.__write_row(row))
+            lua_rows.append(self.write_row(row))
 
         return ",".join(lua_rows)
 

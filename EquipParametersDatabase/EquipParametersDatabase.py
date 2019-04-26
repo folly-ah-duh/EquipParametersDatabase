@@ -1,4 +1,4 @@
-from TableBuilder import TableBuilder
+from DbManager import *
 from EquipParameterWriter import EquipParameterWriter
 from DbGUI import DbGUI
 from tkinter import *

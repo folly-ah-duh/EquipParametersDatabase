@@ -2,7 +2,7 @@ import sqlite3
 from TableDictionaries import TableDictionaries
 from EquipParametersReader import EquipParametersReader
 
-class TableBuilder():
+class DbManager():
     """writes lua tables to database (lua -> sql)"""
 
 
@@ -49,3 +49,13 @@ class TableBuilder():
     def build_database(self, equip_parameters_filename):
         self.__create_tables()
         self.__parse_lua_data(equip_parameters_filename)
+
+    def query_database(self, query):
+        self.__c.execute(query)
+        return self.__c.fetchall()
+
+    def get_description(self):
+        d = []
+        for name_col in self.__c.description:
+            d.append(name_col[0])
+        return d
