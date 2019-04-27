@@ -50,12 +50,14 @@ class DbManager():
         self.__create_tables()
         self.__parse_lua_data(equip_parameters_filename)
 
+
     def query_database(self, query):
         self.__c.execute(query)
         return self.__c.fetchall()
 
+
     def get_description(self):
-        d = []
+        column_names = []
         for name_col in self.__c.description:
-            d.append(name_col[0])
-        return d
+            column_names.append(name_col[0])
+        return column_names

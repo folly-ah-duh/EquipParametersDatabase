@@ -1,4 +1,5 @@
 from TableDictionaries import *
+from pathlib import Path
 import sqlite3
 
 class EquipParameterWriter():
@@ -65,6 +66,29 @@ class EquipParameterWriter():
 
 
     def write_equip_parameters(self, equip_parameters_filename):
+        filepath = Path(equip_parameters_filename)
+        self.backup_rewrite_file(filepath, 0, 3)
+
         with open(equip_parameters_filename, 'w+') as ep_writer:
             ep_writer.write("this={}TppEquip.ReloadEquipParameterTables2{" + self.__compile_tables() + "}return this")
 
+
+    def backup_rewrite_file(self, filePath, recursion_current, recursion_max):
+        if recursion_current == 0:
+            if filePath.is_file():
+                self.backup_rewrite_file(filePath, 1, recursion_max)
+            return
+        
+        ext = filePath.suffix
+        filePath_no_ext = filePath.name.split('.')[0]
+        backup_path = Path(f'{filePath_no_ext}.{recursion_current}{ext}')
+
+        if backup_path.is_file():
+            if recursion_current == recursion_max:
+                filePath.replace(backup_path)
+            else:
+                self.backup_rewrite_file(backup_path, recursion_current + 1, recursion_max)
+                filePath.rename(backup_path)
+        else:
+            filePath.rename(backup_path)
+        

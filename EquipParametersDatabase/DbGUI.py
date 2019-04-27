@@ -46,24 +46,18 @@ class DbGUI():
         self.export_frame = Frame(self.appContainer)
         self.export_frame.pack(**padding_dictionary, anchor=S, fill=X)
 
-        self.export_label = Label(self.export_frame, text="Export to file: ")
-        self.export_label.pack(anchor=NW)
-
-        self.destination_frame = Frame(self.export_frame)
-        self.destination_frame.pack(anchor=S, fill=X)
-
-        self.dest_box = Entry(self.destination_frame)
-        self.dest_box.pack(side=LEFT, expand=YES, fill=BOTH)
-        self.select_dir_button = Button(self.destination_frame, text="...", command=self.select_folder)
-        self.select_dir_button.pack(side=RIGHT)
-
         self.export_button_frame = Frame(self.export_frame, pady="2m")
         self.export_button_frame.pack(anchor=S, fill=X)
-        self.export_button = Button(self.export_button_frame, text="Export", command=self.export_file)
-        self.export_button.configure(width=button_width)
+        self.export_button = Button(self.export_button_frame, text="Save Changes", command=self.save_file)
         self.export_button.pack(anchor=E, expand=YES)
 
+
     def submit_query(self, event=None):
+        #clear previous query:
+        list_len = self.response_listbox.size()
+        if list_len > 0:
+            self.response_listbox.delete(0, list_len - 1)
+
         epw = EquipParameterWriter(self.conn)
         fetched_result = self.db.query_database(self.query_box.get())
         description = self.db.get_description()
@@ -76,9 +70,6 @@ class DbGUI():
             self.response_listbox.insert(END, row_str)
 
 
-    def select_folder(self):
-        pass
-
-
-    def export_file(self):
-        print(self.dest_box.get())
+    def save_file(self):
+        epw = EquipParameterWriter(self.conn)
+        epw.write_equip_parameters("EquipParameters.lua")
